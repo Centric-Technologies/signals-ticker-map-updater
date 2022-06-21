@@ -1,0 +1,8 @@
+pandas
+google-cloud-storage
+functions_framework
+slack_sdk
+pyarrow<7.0.0
+tqdm
+google-cloud-secret-manager
+gcsfs
