@@ -1,7 +1,3 @@
-# Numerai universe updater
+# Ticker Map Updater
 
-This is a simple Cloud Function that downloads the latest Numerai Universe (from Numerai S3 url)
-and parse it into a list, then uploading it to gs://signals-stocks-lists/numerai-universe.txt
-
-## Schedule
-The cloud function it triggered by Cloud Scheduler every day at 23:00 UTC
+This service runs daily and make sure our universe ticker map is up to date with the latest Numerai universe and all extra details are set (country, indsutry, industry, ISIN code)

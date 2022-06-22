@@ -214,7 +214,7 @@ def _build_eodhd_map(bbg_universe: set) -> pd.DataFrame:
     return map
 
 
-def build_map():
+def complete_numerai_mapping():
     """
     Builds a mapping of all current and historical Numerai's universe,
     between bloomberg ticker and EOD/Yahoo ticker
