@@ -11,7 +11,7 @@ COPY requirements-private.txt requirements-private.txt
 
 
 RUN pip install -r requirements.txt
-RUN pip install -q --index-url https://${GEMFURY_TOKEN}:@pypi.fury.io/centrictechnologiesltd/ -r requirements-private.txt 
+RUN pip install --no-deps --index-url https://${GEMFURY_TOKEN}:@pypi.fury.io/centrictechnologiesltd/ -r requirements-private.txt 
 
 COPY . /app
 

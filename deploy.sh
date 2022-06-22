@@ -38,7 +38,7 @@ docker tag ticker-map-updater:$tag eu.gcr.io/trend-master-1612506394802/ticker-m
 echo "Pushing the image to GCP container repository"
 docker push eu.gcr.io/trend-master-1612506394802/ticker-map-updater:$tag
 
-echo "Deploying the new version to Cloud Run"
-gcloud run deploy ticker-map-updater --image=eu.gcr.io/trend-master-1612506394802/signals-predictor-api:$tag --memory=8G --cpu=4 --region=europe-west4
+# echo "Deploying the new version to Cloud Run"
+# gcloud run deploy ticker-map-updater --image=eu.gcr.io/trend-master-1612506394802/signals-predictor-api:$tag --memory=8G --cpu=4 --region=europe-west4
 
 echo "${green}The image with tag $tag is built and pushed. ${reset}"
