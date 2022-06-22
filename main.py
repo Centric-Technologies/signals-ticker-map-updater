@@ -1,9 +1,5 @@
-import io
 import logging
-import numpy as np
 import pandas as pd
-import functions_framework
-from google.cloud import storage
 
 from signals_common_core import log
 from signals_common_core.data import tickers
@@ -21,8 +17,7 @@ SLACK_TOKEN_SECRET_NAME = "slack-token-alert-bot"
 logger = log.get_logger(__name__)
 
 
-@functions_framework.http
-def main(request):
+def main():
     slack_client = slack.SlackClient(get_secret_value(SLACK_TOKEN_SECRET_NAME))
 
     logger.info("Downloading ticker map")
@@ -31,7 +26,10 @@ def main(request):
     logging.info("Checking for uplicate tickers")
     duplicated = ticker_map[ticker_map.duplicated(subset="ticker", keep=False)]
     if not duplicated.empty:
-        utils.notify_duplicated_mapping(list(duplicated.index))
+        slack_client.send_message(
+            channel="signals-alerts",
+            text=f"Duplicates found in ticker map, please review {', '.join(list(duplicated.index))}",
+        )
 
     logger.info("Checkin for new tickers from Numerai")
     known_universe_tickers = set(ticker_map.index.to_list())
@@ -117,4 +115,9 @@ def main(request):
 
 
 if __name__ == "__main__":
-    main(None)
+    try:
+        main()
+    except Exception as e:
+        logger.exception("Failed updating ticker map")
+        slack_client = slack.SlackClient(get_secret_value(SLACK_TOKEN_SECRET_NAME))
+        slack_client.send_message("signals-alerts", f"Failed updating ticker map. {e}")
