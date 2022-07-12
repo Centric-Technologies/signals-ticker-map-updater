@@ -122,3 +122,4 @@ if __name__ == "__main__":
         logger.exception("Failed updating ticker map")
         slack_client = slack.SlackClient(get_secret_value(SLACK_TOKEN_SECRET_NAME))
         slack_client.send_message("signals-alerts", f"Failed updating ticker map. {e}")
+        raise
