@@ -67,7 +67,7 @@ converters = {
     "SJ": ConverterItem(MAP_EODHD, _BBG, MAP_EODHD, ".JSE"),
     "SM": ConverterItem(MAP_EODHD, _BBG, MAP_EODHD, ".MC"),
     "SP": ConverterItem(MAP_EODHD, MAP_YAHOO, MAP_EODHD, ".SG"),
-    "SS": ConverterItem(MAP_EODHD, MAP_YAHOO, MAP_EODHD, ".ST"),
+    "SS": ConverterItem(MAP_EODHD, _BBG, MAP_EODHD, ".ST"),
     "SW": ConverterItem(MAP_EODHD, _BBG, MAP_EODHD, ".SW"),
     "TB": ConverterItem(MAP_EODHD, _BBG, MAP_EODHD, ".BK"),
     "TI": ConverterItem(MAP_EODHD, _BBG, MAP_EODHD, ".IS"),
