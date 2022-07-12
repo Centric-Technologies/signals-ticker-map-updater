@@ -57,6 +57,7 @@ def main():
             numerai_latest_universe, how="outer", on="bloomberg_ticker"
         )
         ticker_map.update(complete_mapping, overwrite=False)
+        ticker_map["eodhd_ticker"] = ticker_map["ticker"]  # TODO stop using "ticker"
 
     ## FILLING COUNTRY
     logging.info("Filling missing countries")
@@ -92,7 +93,7 @@ def main():
             ticker_map.update(isins, overwrite=False)
 
     ### FETCHING FUNDAMENTALES FOR TICKERS WHICH ARE MISSING IT
-    logger.info("Checking for missing ISIN numbers")
+    logger.info("Checking for missing fundamental data")
     missing_fund = list(
         ticker_map[
             (ticker_map["industry"].isna())
